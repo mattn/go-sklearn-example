@@ -5,6 +5,7 @@ import (
 
 	"github.com/pa-m/sklearn/datasets"
 
+	"github.com/pa-m/sklearn/metrics"
 	modelselection "github.com/pa-m/sklearn/model_selection"
 	"github.com/pa-m/sklearn/neighbors"
 )
@@ -25,4 +26,5 @@ func main() {
 		}
 	}
 	fmt.Printf("%.02f%%\n", float64(hit)/float64(rows)*100)
+	fmt.Printf("%.02f%%\n", metrics.AveragePrecisionScore(result.ColView(0), Ytest.ColView(0), "macro", nil))
 }
