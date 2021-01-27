@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 
-	"gonum.org/v1/gonum/mat"
-
+	"github.com/pa-m/sklearn/metrics"
 	"github.com/pa-m/sklearn/preprocessing"
 	"github.com/pa-m/sklearn/svm"
+	"gonum.org/v1/gonum/mat"
 )
 
 func main() {
@@ -30,13 +30,5 @@ func main() {
 	clf.Fit(X1, Y1)
 
 	result := clf.Predict(X1, nil)
-	hit := 0
-	rows := result.RawMatrix().Rows
-	for i := 0; i < rows; i++ {
-		fmt.Println(result.At(i, 0), Y.At(i, 0))
-		if result.At(i, 0) == Y.At(i, 0) {
-			hit++
-		}
-	}
-	fmt.Printf("%.02f%%\n", float64(hit)/float64(rows)*100)
+	fmt.Printf("%.02f%%\n", metrics.AccuracyScore(result, Y, true, nil)*100)
 }
