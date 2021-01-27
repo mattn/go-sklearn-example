@@ -24,5 +24,5 @@ func main() {
 			hit++
 		}
 	}
-	fmt.Printf("%.02f%%\n", float64(hit)/float64(rows))
+	fmt.Printf("%.02f%%\n", float64(hit)/float64(rows)*100)
 }
